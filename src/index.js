@@ -132,6 +132,7 @@ export default class extends Component {
     loadMinimalSize: PropTypes.number,
     loadMinimalLoader: PropTypes.element,
     loop: PropTypes.bool,
+    lastNextButton: PropTypes.bool,
     autoplay: PropTypes.bool,
     autoplayTimeout: PropTypes.number,
     autoplayDirection: PropTypes.bool,
@@ -570,15 +571,16 @@ export default class extends Component {
 
   renderNextButton = () => {
     let button = null
-
+    const lastPage = this.state.index === this.state.total - 1
     if (this.props.loop ||
-      this.state.index !== this.state.total - 1) {
+      this.props.lastNextButton ||
+      lastPage) {
       button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
     }
 
     return (
       <TouchableOpacity
-        onPress={() => button !== null && this.scrollBy(1)}
+        onPress={() => lastPage ? this.props.lastPageNext && this.props.lastPageNext() : button !== null && this.scrollBy(1)}
         disabled={this.props.disableNextButton}
       >
         <View>
