@@ -574,7 +574,7 @@ export default class extends Component {
     const lastPage = this.state.index === this.state.total - 1
     if (this.props.loop ||
       this.props.lastNextButton ||
-      lastPage) {
+      !lastPage) {
       button = this.props.nextButton || <Text style={styles.buttonText}>›</Text>
     }
 
