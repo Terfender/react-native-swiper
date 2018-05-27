@@ -553,7 +553,7 @@ export default class extends Component {
     }
 
     return (
-      <View pointerEvents='none' style={[styles['pagination_' + this.state.dir], this.props.paginationStyle]}>
+      <View pointerEvents='none' style={[styles['pagination_' + this.state.dir], this.props.paginationStyle, {zIndex: 100}]}>
         {dots}
       </View>
     )
@@ -612,8 +612,10 @@ export default class extends Component {
         width: this.state.width,
         height: this.state.height
       }, this.props.buttonWrapperStyle]}>
-        {this.renderPrevButton()}
-        {this.renderNextButton()}
+        <View style={this.props.innerButtonWrapper}>
+          {this.renderPrevButton()}
+          {this.renderNextButton()}
+        </View>
       </View>
     )
   }
