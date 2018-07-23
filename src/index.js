@@ -16,6 +16,13 @@ import {
   ActivityIndicator
 } from 'react-native'
 
+ const hitSlop = {
+  top:    20,
+  bottom: 20,
+  left:   20,
+  right:  20,
+}
+
 /**
  * Default styles
  * @type {StyleSheetPropType}
@@ -580,7 +587,7 @@ export default class extends Component {
 
     return (
       <TouchableOpacity
-        onPress={() => lastPage ? this.props.lastPageNext && this.props.lastPageNext() : button !== null && this.scrollBy(1)}
+        hitSlop={hitSlop} onPress={() => lastPage ? this.props.lastPageNext && this.props.lastPageNext() : button !== null && this.scrollBy(1)}
         disabled={this.props.disableNextButton}
       >
         <View>
@@ -598,7 +605,7 @@ export default class extends Component {
     }
 
     return (
-      <TouchableOpacity onPress={() => button !== null && this.scrollBy(-1)}>
+      <TouchableOpacity hitSlop={hitSlop} onPress={() => button !== null && this.scrollBy(-1)}>
         <View>
           {button}
         </View>
